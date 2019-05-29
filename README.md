@@ -7,8 +7,14 @@ Summary: The docker sandbox is a convenient repository to clone when starting a 
 
 ## Steps
 ```bash
-NEW_PROJ_NAME=[insert-name-here]
-git clone --bare https://github.com/wbmartin/docker-sandbox.git $NEW_PROJ_NAME
+NEW_PROJ_NAME=bectran-sandbox
+GITHUB_NEW_USERNAME=wbmartin
+GITHUB_BASE_REPO=docker-sandbox
+git clone https://github.com/$GITHUB_BASE_USERNAME/$GITHUB_BASE_REPO $NEW_PROJ_NAME
 cd $NEW_PROJ_NAME
-git push --mirror https://github.com/wbmartin/$NEW_PROJ_NAME
+git remote set-url --add origin https://github.com/$GITHUB_NEW_USERNAME/$NEW_PROJ_NAME
+git remote set-url --delete origin https://github.com/$GITHUB_BASE_USERNAME/$GITHUB_BASE_REPO
+git add *
+git commit -a -m "Copied from https://github.com/$GITHUB_BASE_USERNAME/$GITHUB_BASE_REPO"
+
 ```
